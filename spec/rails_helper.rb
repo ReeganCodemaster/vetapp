@@ -49,7 +49,8 @@ RSpec.configure do |config|
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
-  config.include RequestSpecHelper, type: :request
+  config.include RequestSpecHelper
+  config.include ControllerSpecHelper
   config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do
