@@ -22,4 +22,16 @@ RSpec.describe 'Users API' do
       end
     end
   end
+
+  context 'when the request is invalid' do
+    before { post '/signup', params:{}, headers: headers }
+
+    it 'does not create a new user' do
+      expect(response).to have_http_status(422)
+    end
+
+    it 'returns a failure message' do
+      expect(json['message']).to match(/Name can't be blank,Email can't be blank,Password can't be blank,Password digest can't be blank/)
+    end
+  end
 end
