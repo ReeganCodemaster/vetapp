@@ -13,6 +13,14 @@ RSpec.describe "Authentications", type: :request do
       email: Faker::Internet.email,
       password: Faker::Internet.password
     }.to_json
+  
+    before {allow(request).to recieve(:headers)and_return(:headers)}
+    context 'when the request is valid' do
+      before { post 'auth/login', params: valid_credentials, headfers: headers}
 
+      it 'returns an authentication token' do
+        expect(response['auth_token']).not_to be_nil
+      end
+    end
   end
 end
