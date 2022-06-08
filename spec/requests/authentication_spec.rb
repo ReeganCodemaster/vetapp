@@ -26,7 +26,7 @@ RSpec.describe "Authentication", type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/auth/login', params: valid_credentials, headers:headers}
+      before { post '/auth/login', params: invalid_credentials, headers:headers}
 
       it 'returns a failure message' do
         expect(response['message']).to match(/Invalid credentials/)
