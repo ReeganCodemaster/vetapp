@@ -27,25 +27,25 @@ RSpec.describe AuthorizeApiRequest do
         end
 
         it 'raises an InvalidToken error' do
-          expect {invalid_request.call}.to raise_error(ExceptionHandler::InvalidToken, 'Invalid token')
+          expect {invalid_request.call}.to raise_error(ExceptionHandler::InvalidToken, /Invalid token/)
         end
       end
 
       context 'when token is expired' do
-        let(:header) { {'Authorization' => invalid_token_genertor(user.id)} }
-        subject(:invalid_request) {described_class.new(:header)}
+        let(:header) { {'Authorization' => expired_token_generator(user.id)} }
+        subject(:invalid_request) {described_class.new(header)}
 
         it 'raises ExceptionHandler::ExpiredSignature error' do
-          expect {invalid_request.call}.to raise_error(ExceptionHandler::ExpiredSignature, 'Signatrure has expired')
+          expect {invalid_request.call}.to raise_error(ExceptionHandler::InvalidToken, /Signature has expired/)
         end
       end
 
       context 'when token is fake' do
         let(:header) { {'Authorization' => 'foobar'} }
-        subject(:invalid_request) {described_class.new(:header)}
+        subject(:invalid_request) {described_class.new(header)}
 
         it 'handles JWT::DecodeError' do
-          expect {invalid_request.call}.to raise_error(ExceptionHandler::InvalidToken, 'Not enough or too many segments')
+          expect {invalid_request.call}.to raise_error(ExceptionHandler::InvalidToken, /Not enough or too many segments/)
         end
       end
     end
