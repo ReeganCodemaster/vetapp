@@ -14,7 +14,7 @@ RSpec.describe 'Users API' do
       end
 
       it 'returns a success mesage' do
-        expect(json['message']).to  match(/Acount created succesfully/)
+        expect(json['message']).to  match(/Account created succesfully/)
       end
 
       it 'returns a token' do
@@ -31,7 +31,7 @@ RSpec.describe 'Users API' do
     end
 
     it 'returns a failure message' do
-      expect(json['message']).to match(/Name can't be blank,Email can't be blank,Password can't be blank,Password digest can't be blank/)
+      expect(json['message']).to match(/Validation failed: Password can't be blank, Name can't be blank, Email can't be blank, Password digest can't be blank/)
     end
   end
 end
