@@ -1,22 +1,24 @@
 require 'rails_helper'
 
-RSpec.describe "Authentications", type: :request do
-  let!(:user) { create(:user) }
-  let(:headers) { valid_heaaders.exept('Authorization')}
-  let(:valid_credentials) do
-    {
-    email: user.email,
-    password:user.password
-    }.to_json
-  let(:invalid_credentials) do
-    {
-      email: Faker::Internet.email,
-      password: Faker::Internet.password
-    }.to_json
-  
-    before {allow(request).to recieve(:headers)and_return(:headers)}
+RSpec.describe "Authentication", type: :request do
+  describe 'Post /auth/login' do
+    let!(:user) { create(:user) }
+    let(:headers) { valid_headers.except('Authorization')}
+    let(:valid_credentials) do
+      {
+        email: user.email,
+        password: user.password
+      }.to_json
+    end
+    let(:invalid_credentials) do
+      {
+        email: Faker::Internet.email,
+        password: Faker::Internet.password
+      }.to_json
+    end
+
     context 'when the request is valid' do
-      before { post 'auth/login', params: valid_credentials, headfers: headers}
+      before { post '/auth/login', params: valid_credentials, headers: headers}
 
       it 'returns an authentication token' do
         expect(response['auth_token']).not_to be_nil
@@ -24,7 +26,7 @@ RSpec.describe "Authentications", type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post 'auth/login', params: valid_credentials, headers:headers}
+      before { post '/auth/login', params: valid_credentials, headers:headers}
 
       it 'returns a failure message' do
         expect(response['message']).to match(/Invalid credentials/)
