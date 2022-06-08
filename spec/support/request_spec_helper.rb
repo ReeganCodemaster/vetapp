@@ -1,5 +1,5 @@
 module RequestSpecHelper
-  def jsom
+  def json
     JSON.parse(response.body)
   end
 end
