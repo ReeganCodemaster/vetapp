@@ -1,7 +1,8 @@
 class AuthenticateUser
-  def initialize(email, password)
+  def initialize(email, password, role)
     @email = email
     @password = password
+    @role = role
   end
 
   def call
@@ -11,7 +12,9 @@ class AuthenticateUser
   private
   def user
     user = User.find_by(email: @email)
-    return user if user && user.authenticate(@password)
+    if user && user.authenticate(@password) && user.role == @role
+      return user 
+    end
     raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)
   end
 end
