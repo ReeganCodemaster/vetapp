@@ -6,9 +6,9 @@ RSpec.describe AuthenticateUser do
       let(:user) { create(:user, role: 'owner') }
       subject(:valid_auth) {described_class.new(user.email, user.password, user.role)}
 
-      context 'and credentials are valid' do
+      context 'when credentials are valid' do
         it 'returns a valid auth token' do
-          token = valid_auth.call
+          token = valid_auth.call('signup')[:auth_token]
           expect(token).not_to be_nil
         end
       end
@@ -17,13 +17,13 @@ RSpec.describe AuthenticateUser do
         context 'because user does not exist' do
           subject(:invalid_auth) {described_class.new('foo', user.password, user.role)}
           it 'raises an authentication error' do
-            expect {invalid_auth.call}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
+            expect {invalid_auth.call('signup')}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
           end
         end
         context 'because the passsword is incorrect' do
           subject(:invalid_auth) {described_class.new(user.email, ' ', user.role)}
           it 'raises an authentication error' do
-            expect {invalid_auth.call}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
+            expect {invalid_auth.call('signup')}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
           end
         end
         
@@ -31,7 +31,7 @@ RSpec.describe AuthenticateUser do
           subject(:invalid_auth) {described_class.new(user.email, user.password, 'vet')}
 
           it 'raises an authentication error' do
-            expect {invalid_auth.call}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
+            expect {invalid_auth.call('signup')}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
           end
         end
       end
@@ -43,7 +43,7 @@ RSpec.describe AuthenticateUser do
 
       context 'and credentials are valid' do
         it 'returns a valid auth token' do
-          token = valid_auth.call
+          token = valid_auth.call('signup')
           expect(token).not_to be_nil
         end
       end
@@ -52,13 +52,13 @@ RSpec.describe AuthenticateUser do
         context 'beacuse user does not exist' do
           subject(:invalid_auth) {described_class.new('foo', user.password, user.role)}
           it 'raises an authentication error' do
-            expect {invalid_auth.call}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
+            expect {invalid_auth.call('signup')}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
           end
         end
         context 'because the passsword is incorrect' do
           subject(:invalid_auth) {described_class.new(user.email, ' ', user.role)}
           it 'raises an authentication error' do
-            expect {invalid_auth.call}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
+            expect {invalid_auth.call('signup')}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
           end
         end
         
@@ -66,7 +66,7 @@ RSpec.describe AuthenticateUser do
           subject(:invalid_auth) {described_class.new(user.email, user.password, 'owner')}
 
           it 'raises an authentication error' do
-            expect {invalid_auth.call}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
+            expect {invalid_auth.call('signup')}.to raise_error(ExceptionHandler::AuthenticationError, /Invalid credentials/)
           end
         end
       end
