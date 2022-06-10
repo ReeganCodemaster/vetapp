@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :appointments
-  has_many :animals, through: :registrations
+  has_many :registrations
+  has_many :pets, through: :registrations
 
   has_secure_password
 
