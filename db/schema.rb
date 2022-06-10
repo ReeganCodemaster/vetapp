@@ -14,16 +14,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_10_115238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "users_id"
+    t.bigint "pets_id"
+    t.datetime "appointment_date"
+    t.index ["pets_id"], name: "index_appointments_on_pets_id"
+    t.index ["users_id"], name: "index_appointments_on_users_id"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.string "name"
     t.string "animal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "pets_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "pet_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
