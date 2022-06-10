@@ -30,4 +30,12 @@ class Message
   def self.account_not_created
     'Account could not be created'
   end
+
+  def self.pet_created 
+    'Pet created succesfully'
+  end
+
+  def self.registration_succesfull
+    'Registration succesfull'
+  end
 end
