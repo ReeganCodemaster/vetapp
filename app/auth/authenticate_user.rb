@@ -1,12 +1,17 @@
 class AuthenticateUser
-  def initialize(email, password, role)
+  def initialize(email, password, role='')
     @email = email
     @password = password
     @role = role
   end
 
   def call(action)
-    auth_token = JsonWebToken.encode(user_id: user(action).id) if user(action)
+    user_info = user(action)
+    auth_token = JsonWebToken.encode(user_id: user_info.id) if user_info
+    {
+      auth_token: auth_token,
+      user: user_info
+    }
   end
 
   private
