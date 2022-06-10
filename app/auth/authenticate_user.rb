@@ -5,12 +5,8 @@ class AuthenticateUser
     @role = role
   end
 
-  def signup
-    JsonWebToken.encode(user_id: user('signup').id) if user('signup')
-  end
-
-  def signin
-    JsonWebToken.encode(user_id: user('signin').id) if user('signin')
+  def call(action)
+    auth_token = JsonWebToken.encode(user_id: user(action).id) if user(action)
   end
 
   private
