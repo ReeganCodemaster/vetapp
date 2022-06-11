@@ -1,3 +1,4 @@
 class VetsController < ApplicationController
-  def 
+  def registrations
+  end
 end
