@@ -42,4 +42,8 @@ class Message
   def self.registration_updated
     'Registration updated'
   end
+
+  def self.appointment_succesfull
+    'Appointment created succesfully'
+  end
 end

@@ -1,4 +1,4 @@
 class Appointment < ApplicationRecord
-  belongs_to :users
-  belongs_to :registrations
+  belongs_to :user
+  belongs_to :registration
 end
