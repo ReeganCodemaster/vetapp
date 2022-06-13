@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get 'vets/:id/registrations', to: 'users#registrations'
   post 'registrations/:id', to: 'registrations#accept_registration'
+  post 'pets/:id/appointment', to:'appointments#create'
   # Defines the root path route ("/")
   # root "articles#index"
 end
