@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'pets/:id/register', to:'pets#register'
 
   get 'vets/:id/registrations', to: 'users#registrations'
+  post 'registrations/:id', to: 'registrations#accept_registration'
   # Defines the root path route ("/")
   # root "articles#index"
 end
