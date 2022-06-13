@@ -11,7 +11,7 @@ class CreateAppointmentsAndRegistrations < ActiveRecord::Migration[7.0]
     create_table :appointments do |t|
       t.belongs_to :users
       t.belongs_to :registrations
-      t.datetime :appointment_date
+      t.datetime :date
     end
   end
 end

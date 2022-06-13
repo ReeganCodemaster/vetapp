@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_10_115238) do
   create_table "appointments", force: :cascade do |t|
     t.bigint "users_id"
     t.bigint "registrations_id"
-    t.datetime "appointment_date"
+    t.datetime "date"
     t.index ["registrations_id"], name: "index_appointments_on_registrations_id"
     t.index ["users_id"], name: "index_appointments_on_users_id"
   end
