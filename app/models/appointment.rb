@@ -1,4 +1,4 @@
-class PetsUsers < ApplicationRecord
-  belongs_to :vets
-  belongs_to :animal
+class Appointment < ApplicationRecord
+  belongs_to :users
+  belongs_to :registrations
 end
