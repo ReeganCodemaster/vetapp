@@ -38,4 +38,8 @@ class Message
   def self.registration_succesfull
     'Registration succesfull'
   end
+
+  def self.registration_updated
+    'Registration updated'
+  end
 end
