@@ -15,11 +15,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_10_115238) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.bigint "users_id"
-    t.bigint "registrations_id"
+    t.bigint "user_id", null: false
+    t.bigint "registration_id", null: false
     t.datetime "date"
-    t.index ["registrations_id"], name: "index_appointments_on_registrations_id"
-    t.index ["users_id"], name: "index_appointments_on_users_id"
+    t.index ["registration_id"], name: "index_appointments_on_registration_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -50,6 +50,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_10_115238) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "appointments", "registrations"
+  add_foreign_key "appointments", "users"
   add_foreign_key "registrations", "pets"
   add_foreign_key "registrations", "users"
 end

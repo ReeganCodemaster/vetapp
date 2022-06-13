@@ -9,8 +9,8 @@ class CreateAppointmentsAndRegistrations < ActiveRecord::Migration[7.0]
     end
     
     create_table :appointments do |t|
-      t.belongs_to :users
-      t.belongs_to :registrations
+      t.references :user, null: false, foreign_key: true
+      t.references :registration, null: false, foreign_key: true
       t.datetime :date
     end
   end
