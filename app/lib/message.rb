@@ -46,4 +46,8 @@ class Message
   def self.appointment_succesfull
     'Appointment created succesfully'
   end
+
+  def self.appointment_unsuccesfull
+    'Appointment could not be created'
+  end
 end
