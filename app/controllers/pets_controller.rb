@@ -1,14 +1,14 @@
 class PetsController < ApplicationController
   def create
     pet = current_user.pets.create!(pet_params)
-    json_response(message:Message.pet_created, pet:pet)
+    json_response(current_user)
   end
 
   def register
     pet = Pet.find(pet_params[:id])
     vet = User.find_by(email: pet_params[:vet_email])
     pet.registrations.create!(user_id:vet.id, registration_date: Time.new)
-    json_response(message:Message.registration_succesfull, pet:pet)
+    json_response(current_user)
   end
 
   private
