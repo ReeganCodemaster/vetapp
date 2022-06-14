@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :appointments
+
   has_many :registrations
   has_many :pets, through: :registrations
 
