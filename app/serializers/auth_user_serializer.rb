@@ -4,6 +4,5 @@ class AuthUserSerializer < ActiveModel::Serializer
   def auth_token
     token = AuthenticateUser.new(object.email, object.password).call
   end
-  has_many :appointments
   has_many :registrations
 end
