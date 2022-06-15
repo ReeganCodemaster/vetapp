@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
   post 'registrations/:id', to: 'registrations#accept_registration'
 
+  get 'users/:id', to: 'users#show'
+
   # Defines the root path route ("/")
   # root "articles#index"
 end
