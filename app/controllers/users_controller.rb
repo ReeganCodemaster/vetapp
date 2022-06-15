@@ -5,14 +5,8 @@ class UsersController < ApplicationController
     auth_response(user)
   end
 
-  def registrations 
-    user = User.find(params[:id])
-    json_response(user)
-  end
-
   def show
-    user = User.find(params[:id])
-    json_response(user)
+    json_response(current_user)
   end
 
   private
