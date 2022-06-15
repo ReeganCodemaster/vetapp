@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def registrations 
-    registrations = Registration.where(user_id: params[:id]).where(accepted: false)
+    user = User.find(params[:id])
     json_response(user)
   end
 
