@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authorize_request, only: :create
   def create
+    # binding.pry
     user = User.create!(user_params)
     auth_response(user)
   end
