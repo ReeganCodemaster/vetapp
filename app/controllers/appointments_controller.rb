@@ -7,7 +7,7 @@ class AppointmentsController < ApplicationController
       registration.appointments.create!(date: appointment_params[:date].to_datetime)
       json_response(pet.owner)
     else
-      json_response(message: Message.appointment_unsuccesfull, status = :unprocessable_entity )
+      json_response({message: Message.appointment_unsuccesfull},:unprocessable_entity )
     end
   end
 
