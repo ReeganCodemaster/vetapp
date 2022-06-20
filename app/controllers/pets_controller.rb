@@ -7,7 +7,7 @@ class PetsController < ApplicationController
   def register
     pet = Pet.find(pet_params[:id])
     vet = User.find_by(email: pet_params[:vet_email])
-    pet.registrations.create!(user_id:vet.id, registration_date: Time.new)
+    pet.registrations.create!(user_id:vet.id, registration_date: DateTime.now, vet_registration: true)
     json_response(current_user)
   end
 
