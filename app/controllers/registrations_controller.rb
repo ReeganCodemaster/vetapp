@@ -3,7 +3,7 @@ class RegistrationsController < ApplicationController
     registration = Registration.find(registration_params[:id])
     registration.update(accepted: true)
 
-    json_response(message: Message.registration_updated, user: registration.user)
+    json_response(registration.user)
   end
 
   private
