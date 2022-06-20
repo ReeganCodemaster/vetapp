@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_14_145952) do
     t.bigint "pet_id", null: false
     t.datetime "registration_date"
     t.boolean "accepted", default: false
+    t.boolean "vet_registration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pet_id"], name: "index_registrations_on_pet_id"
