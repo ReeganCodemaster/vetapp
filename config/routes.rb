@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'user', to: 'users#show'
 
+  get 'vets', to: 'users#vets'
+
   # Defines the root path route ("/")
   # root "articles#index"
 end
