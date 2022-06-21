@@ -83,3 +83,6 @@ gem "bcrypt", "~> 3.1"
 gem "jwt", "~> 2.4"
 
 gem "active_model_serializers", "~> 0.9"
+gem "redis", "~> 4.6"
+
+gem "hiredis", "~> 0.6.3"

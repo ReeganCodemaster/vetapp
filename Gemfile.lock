@@ -115,6 +115,7 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hiredis (0.6.3)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.0)
@@ -201,6 +202,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    redis (4.6.0)
     regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -279,6 +281,7 @@ DEPENDENCIES
   debug
   factory_bot_rails
   faker
+  hiredis (~> 0.6.3)
   importmap-rails
   jbuilder
   jwt (~> 2.4)
@@ -287,6 +290,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.3)
   rails-erd
+  redis (~> 4.6)
   rspec-rails
   selenium-webdriver
   shoulda-matchers
