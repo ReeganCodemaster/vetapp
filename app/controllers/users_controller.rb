@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def vets
-    json_response(user.where(role: 'vet'))
+    json_response(User.where(role: 'vet'))
   end
 
   private
