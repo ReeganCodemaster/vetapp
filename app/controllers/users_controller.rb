@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
   skip_before_action :authorize_request, only: :create
   def create
-    # binding.pry
     user = User.create!(user_params)
     auth_response(user)
   end
 
   def show
     json_response(current_user)
+  end
+
+  def vets
+    json_response(user.where(role: 'vet'))
   end
 
   private
