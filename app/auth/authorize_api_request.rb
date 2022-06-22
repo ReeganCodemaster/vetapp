@@ -11,7 +11,7 @@ class AuthorizeApiRequest
 
   private
   def user
-    user_obj = Rails.cache.fetch("user/#{decoded_auth_token[:user_id]}") do
+    user_obj = Rails.cache.fetch("user/#{decoded_auth_token[:user_id]}", expires_in: 12.hours) do
       User.find(decoded_auth_token[:user_id])
     end
     @user ||= user_obj if decoded_auth_token
