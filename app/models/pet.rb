@@ -4,6 +4,6 @@ class Pet < ApplicationRecord
   # has_many :appointments, through: :registrations
 
   def owner
-    self.users.where(role: 'owner')
+    self.users.where(role: 'owner').last
   end
 end
