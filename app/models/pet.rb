@@ -6,4 +6,6 @@ class Pet < ApplicationRecord
   def owner
     self.users.where(role: 'owner').last
   end
+
+  validates_presence_of :name, :animal
 end
