@@ -1,7 +1,7 @@
 class PetsController < ApplicationController
   def create
       pet = current_user.pets.create!(name: pet_params[:name], animal: pet_params[:animal])
-      json_response(current_user)
+      json_response(current_user, status = :created)
   end
 
   def register
