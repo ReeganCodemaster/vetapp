@@ -2,8 +2,12 @@ class AuthenticationController < ApplicationController
   skip_before_action :authorize_request, only: :authenticate
   def authenticate
     user = User.find_by(email: auth_params[:email])
-    user.password = auth_params[:password]
-    auth_response(user)
+    if user
+      user.password = auth_params[:password]
+      auth_response(user) 
+    else
+      render json: {message: 'Invalid credentials'}, status: :unprocessable_entity
+    end
   end
 
   private
