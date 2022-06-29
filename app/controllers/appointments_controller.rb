@@ -5,7 +5,7 @@ class AppointmentsController < ApplicationController
     registration = pet.registrations.find_by(user_id: vet.id)
     if !registration.nil? 
       registration.appointments.create!(date: appointment_params[:date].to_datetime)
-      json_response(pet.owner)
+      json_response(pet.owner, status =  :created)
     else
       json_response({message: Message.appointment_unsuccesfull},:unprocessable_entity )
     end
