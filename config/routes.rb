@@ -3,11 +3,13 @@ Rails.application.routes.draw do
   post 'auth/login', to: 'authentication#authenticate'
   post '/signup', to: 'users#create'
 
-  post '/pets/create', to: 'pets#create'
-  post 'pets/:id/register', to:'pets#register'
   post 'pets/:id/appointment', to:'appointments#create'
   
   resources :registrations , only: :update
+  
+  resources :pets, only: :create do
+    resources :registrations, only: :create
+  end
 
   get 'user', to: 'users#show'
 
