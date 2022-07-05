@@ -11,9 +11,8 @@ class AuthorizeApiRequest
 
   private
   def user
-    user_obj = Rails.cache.fetch("user/#{decoded_auth_token[:user_id]}", expires_in: 12.hours) do
-      User.find(decoded_auth_token[:user_id])
-    end
+    user_obj = User.find(decoded_auth_token[:user_id])
+
     @user ||= user_obj if decoded_auth_token
   rescue ActiveRecord::RecordNotFound => error
     raise(ExceptionHandler::InvalidToken, ("#{Message.invalid_token} #{error.message}"))
