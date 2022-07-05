@@ -21,8 +21,4 @@ class RegistrationsController < ApplicationController
       json_response({message: "Vet does't exist"}, staus = :unprocessable_entity)
     end
   end
-  private
-  def registration_params
-    params.permit(:id)
-  end
 end
