@@ -9,7 +9,6 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    # binding.pry
     pet = Pet.find(params[:pet_id])
     vet = User.find_by(email: params[:vet_email])
     if vet.present?
