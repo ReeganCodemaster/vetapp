@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
-  def accept_registration
-    registration = Registration.find(registration_params[:id])
+  def update
+    registration = Registration.find(params[:id])
     registration.update(accepted: true)
 
     user = registration.pet.users.where(role: 'owner').last
