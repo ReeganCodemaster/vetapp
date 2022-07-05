@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post 'pets/:id/register', to:'pets#register'
   post 'pets/:id/appointment', to:'appointments#create'
   
-  post 'registrations/:id', to: 'registrations#accept_registration'
+  resources :registrations , only: :update
 
   get 'user', to: 'users#show'
 
