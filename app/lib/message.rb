@@ -50,4 +50,8 @@ class Message
   def self.appointment_unsuccesfull
     'Appointment could not be created'
   end
+
+  def self.registration_unsuccesfull
+    'Registration unsuccesfull'
+  end
 end
