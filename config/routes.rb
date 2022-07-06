@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  post 'auth/login', to: 'authentication#authenticate'
+  post 'auth/login', to: 'users#authenticate'
   post '/signup', to: 'users#create'
 
   post 'pets/:id/appointment', to:'appointments#create'
