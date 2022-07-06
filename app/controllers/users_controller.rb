@@ -23,7 +23,11 @@ class UsersController < ApplicationController
   def vets
     json_response(User.where(role: 'vet'))
   end
-  
+
+  def pluck_vets
+    json_response(User.where(role: 'vet').pluck(:name, :email))
+  end
+
   private
   def user_params 
     params.permit(:name,:email,:password,:password_confirmation, :role)

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get 'vets', to: 'users#vets'
 
+  get 'vets/emails', to: 'users#pluck_vets'
+
   # Defines the root path route ("/")
   # root "articles#index"
 end
