@@ -1,12 +1,12 @@
 class AuthenticationController < ApplicationController
   skip_before_action :authorize_request, only: :authenticate
   def authenticate
-    user = User.find_by(email: params[:email])
-    if user
+    begin
+      user = User.find_by(email: params[:email])
       user.password = params[:password]
       auth_response(user) 
-    else
-      render json: {message: 'Invalid credentials'}, status: :unprocessable_entity
+    rescue
+      raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)
     end
   end
 
