@@ -17,7 +17,7 @@ class RegistrationsController < ApplicationController
       pet.registrations.create!(user_id:vet.id, registration_date: DateTime.now, vet_registration: true)
       json_response(current_user, status = :created)
     else
-      json_response({message: "Vet does't exist"}, staus = :unprocessable_entity)
+      json_response({message: Message.registration_unsuccesfull}, staus = :unprocessable_entity)
     end
   end
 end
